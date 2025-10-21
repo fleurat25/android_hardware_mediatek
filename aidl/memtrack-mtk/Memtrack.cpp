@@ -56,7 +56,7 @@ bool getMaliGpuMemory(int processId, int64_t* memSize) {
             unsigned int clientId;
             if (sscanf(fileLine, "  %*s %ld %u", &gpuAlloc, &clientId) == 2) {
                 if (processId == clientId || processId == 0) {
-                    *memSize = gpuAlloc * PAGE_SIZE;
+                    *memSize = gpuAlloc * getpagesize();
                     if (processId != 0) break;
                 }
             }
